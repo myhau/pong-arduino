@@ -21,6 +21,25 @@ DesktopRenderer::DesktopRenderer(int w, int h): window(sf::VideoMode(w, h), "My 
         return this->h;
     }
 
+    int angleForKey(int keyCode) {
+        const int n = 9;
+        const int joy_states = 1024;
+        const int min_joy_state = -512;
+        const int max_joy_state = 512;
+        using namespace sf;
+        Keyboard::Key k[] =
+                {Keyboard::A, Keyboard::S, Keyboard::D, Keyboard::F,
+                 Keyboard::G, Keyboard::H, Keyboard::J, Keyboard::K, Keyboard::L};
+        int joystick_state = 0;
+        for (int i = 0; i < n; i++) {
+            if (k[i] == keyCode) {
+                joystick_state = (int) ((double) (i + 1) * ((double) joy_states / (double) n));
+            }
+        }
+        joystick_state += min_joy_state;
+        return joystick_state;
+    }
+
     void DesktopRenderer::check_and_clear() {
         using namespace sf;
         if(window.isOpen()) {
@@ -31,22 +50,14 @@ DesktopRenderer::DesktopRenderer(int w, int h): window(sf::VideoMode(w, h), "My 
                 if (event.type == Event::Closed)
                     window.close();
                 if (event.type == Event::KeyPressed) {
-                    const int n = 9;
-                    const int joy_states = 1024;
-                    const int min_joy_state = -512;
-                    const int max_joy_state = 512;
-                    sf::Keyboard::Key k[] =
-                            {Keyboard::A, Keyboard::S, Keyboard::D, Keyboard::F,
-                             Keyboard::G, Keyboard::H, Keyboard::J, Keyboard::K, Keyboard::L};
-                    int joystick_state = 0;
-                    for (int i = 0; i < n; i++) {
-                        if (k[i] == event.key.code) {
-                            joystick_state = (int) ((double) (i + 1) * ((double) joy_states / (double) n));
-                        }
-                    }
-                    joystick_state += min_joy_state;
-                    mockInputDevice.setAngle(joystick_state);
 
+
+                    mockInputDevice.setAngle(angleForKey(event.key.code));
+
+                }
+                if (event.type == Event::KeyReleased) {
+                    if(mockInputDevice.getAngle() == angleForKey(event.key.code))
+                        mockInputDevice.setAngle(0);
                 }
             }
         }
