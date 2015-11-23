@@ -1,0 +1,6 @@
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/pong_arduino_mock-upload.dir
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/uno_CORE.dir
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/pong_arduino_mock.dir
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/uno_..dir
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/upload.dir
+/home/mihau/workspace/pong-arduino-mock/CMakeFiles/pong_arduino_mock-size.dir

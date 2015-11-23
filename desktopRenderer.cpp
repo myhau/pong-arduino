@@ -1,7 +1,7 @@
 //
 // Created by mihau on 11/10/15.
 //
-
+#ifndef ARDUINO
 #include "desktopRenderer.h"
 
 
@@ -105,3 +105,4 @@ DesktopRenderer::DesktopRenderer(int w, int h): window(sf::VideoMode(w, h), "My 
         draw_window();
     };
 
+#endif

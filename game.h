@@ -5,6 +5,8 @@
 #ifndef PONG_ARDUINO_MOCK_GAME_H
 #define PONG_ARDUINO_MOCK_GAME_H
 
+#include <Arduino.h>
+
 #include "board.h"
 #include "ball.h"
 #include "paddle.h"

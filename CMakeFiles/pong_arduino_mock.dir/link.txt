@@ -1,0 +1,1 @@
+/usr/sbin/avr-g++   -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -std=c++11  -w -Os -Wl,--gc-sections -mmcu=atmega328p  CMakeFiles/pong_arduino_mock.dir/pong_arduino_mock_pong_arduino.ino.cpp.obj  -o pong_arduino_mock.elf libuno_..a libuno_CORE.a -lc -lm 

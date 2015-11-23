@@ -1,0 +1,31 @@
+CMakeFiles/uno_..dir/pong_arduino_mock_pong_arduino.ino.cpp.obj: \
+ /home/mihau/workspace/pong-arduino-mock/pong_arduino_mock_pong_arduino.ino.cpp \
+ /home/mihau/workspace/pong-arduino-mock/joystickInputDevice.h \
+ /home/mihau/workspace/pong-arduino-mock/inputDevice.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/Arduino.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/binary.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/WCharacter.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/WString.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/HardwareSerial.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/Stream.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/Print.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/Printable.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/USBAPI.h \
+ /usr/share/arduino/hardware/arduino/avr/cores/arduino/Arduino.h \
+ /usr/share/arduino/hardware/arduino/avr/variants/standard/pins_arduino.h \
+ /home/mihau/workspace/pong-arduino-mock/game.h \
+ /home/mihau/workspace/pong-arduino-mock/board.h \
+ /home/mihau/workspace/pong-arduino-mock/renderer.h \
+ /home/mihau/workspace/pong-arduino-mock/color.h \
+ /home/mihau/workspace/pong-arduino-mock/gameObject.h \
+ /home/mihau/workspace/pong-arduino-mock/ball.h \
+ /home/mihau/workspace/pong-arduino-mock/paddle.h \
+ /home/mihau/workspace/pong-arduino-mock/gameStatus.h \
+ /home/mihau/workspace/pong-arduino-mock/frameRate.h \
+ /home/mihau/workspace/pong-arduino-mock/gameConfig.h \
+ /home/mihau/workspace/pong-arduino-mock/arduinoRenderer.h \
+ /home/mihau/workspace/pong-arduino-mock/TVout.h \
+ /home/mihau/workspace/pong-arduino-mock/video_gen.h \
+ /home/mihau/workspace/pong-arduino-mock/spec/hardware_setup.h \
+ /home/mihau/workspace/pong-arduino-mock/spec/video_properties.h \
+ /home/mihau/workspace/pong-arduino-mock/randomInputDevice.h

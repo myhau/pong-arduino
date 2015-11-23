@@ -10,6 +10,7 @@
 #include "board.h"
 #include "paddle.h"
 #include "gameStatus.h"
+#include "color.h"
 
 class Ball: public GameObject {
 

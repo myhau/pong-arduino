@@ -2,6 +2,7 @@
 // Created by mihau on 11/10/15.
 //
 
+#ifndef ARDUINO
 #ifndef PONG_ARDUINO_MOCK_DESKTOPRENDERER_H
 #define PONG_ARDUINO_MOCK_DESKTOPRENDERER_H
 
@@ -41,3 +42,4 @@ public:
 
 
 #endif //PONG_ARDUINO_MOCK_DESKTOPRENDERER_H
+#endif // arduino

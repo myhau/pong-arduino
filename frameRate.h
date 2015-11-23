@@ -13,7 +13,7 @@ private:
 
     long int nowInUs();
 public:
-    FrameRateHandler(uint8_t frameRate);
+    FrameRateHandler(int frameRate);
     void updatedFrameNow();
     bool shouldUpdateFrame();
 };

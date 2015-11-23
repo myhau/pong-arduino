@@ -1,15 +1,21 @@
-cmake_minimum_required(VERSION 3.3)
-project(pong_arduino_mock)
+cmake_minimum_required(VERSION 2.8.4)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
+set(PROJECT_NAME pong_arduino_mock)
+project(${PROJECT_NAME})
 
-set(SOURCE_FILES main.cpp ball.h ball.cpp paddle.h paddle.cpp desktopRenderer.cpp desktopRenderer.h renderer.h board.cpp board.h
-        frameRate.h frameRate.cpp game.h game.cpp gameObject.h inputDevice.h mockInputDevice.cpp mockInputDevice.h gameConfig.cpp gameConfig.h color.h gameStatus.h randomInputDevice.cpp randomInputDevice.h arduinoRenderer.cpp arduinoRenderer.h)
+#add_definitions(-DARDUINO)
+#remove_definitions(-DDESKTOP)
 
-set(SFML_LIBRARIES sfml/bin)
-set(SFML_INCLUDE_DIRS sfml/include)
+include_directories(/usr/share/arduino/hardware/arduino/avr/cores/arduino)
 
-include_directories(${SFML_INCLUDE_DIRS})
-add_executable(pong_arduino_mock ${SOURCE_FILES})
-link_directories(${SFML_LIBRARIES})
-target_link_libraries(pong_arduino_mock sfml-graphics sfml-window sfml-system)
+add_definitions(-DARDUINO)
+
+#add_subdirectory(lib)
+
+set(${CMAKE_PROJECT_NAME}_SKETCH pong_arduino.ino)
+set(${CMAKE_PROJECT_NAME}_BOARD uno)
+set(${CMAKE_PROJECT_NAME}_PORT /dev/ttyACM0)
+
+generate_arduino_firmware(${CMAKE_PROJECT_NAME})

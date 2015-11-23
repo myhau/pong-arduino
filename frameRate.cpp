@@ -2,14 +2,15 @@
 // Created by mihau on 11/10/15.
 //
 
+
+#include "frameRate.h"
+
+
+#ifndef ARDUINO
 #include <sys/time.h>
 #include <iostream>
 #include <unistd.h>
 #include <SFML/Graphics.hpp>
-#include "frameRate.h"
-
-
-
 long int FrameRateHandler::nowInUs() {
     struct timeval tp;
     gettimeofday(&tp, NULL);
@@ -17,7 +18,7 @@ long int FrameRateHandler::nowInUs() {
     return ms;
 }
 
-FrameRateHandler::FrameRateHandler(uint8_t frameRate):
+FrameRateHandler::FrameRateHandler(int frameRate):
         frameRate(frameRate), lastUpdate(0),
         shouldUpdateEvery(1000000 / frameRate) {}
 
@@ -33,3 +34,19 @@ bool FrameRateHandler::shouldUpdateFrame() {
     }
     return true;
 }
+#else 
+long int FrameRateHandler::nowInUs() {
+    return 0;
+}
+
+FrameRateHandler::FrameRateHandler(int frameRate):
+        frameRate(frameRate), lastUpdate(0),
+        shouldUpdateEvery(1000000 / frameRate) {}
+
+void FrameRateHandler::updatedFrameNow() {
+    
+}
+bool FrameRateHandler::shouldUpdateFrame() {
+    return true;
+}
+#endif

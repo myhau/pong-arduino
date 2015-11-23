@@ -10,4 +10,4 @@ GameConfig::GameConfig():
         paddleWidth(5),
         boardWidth(240),
         boardHeight(192),
-        frameRate(30) {}
+        frameRate(100) {}

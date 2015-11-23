@@ -8,12 +8,15 @@
 
 #include "renderer.h"
 #include "inputDevice.h"
-#include "arduino-lib/TVout.h"
+#include "TVout.h"
 
 class ArduinoRenderer: public Renderer {
 private:
     int w;
     int h;
+    TVout TV;
+
+void after();
 public:
     ArduinoRenderer(int width, int height);
     virtual void drawRect(int x, int y, int width, int height, Color c, bool filled) override;

@@ -2,10 +2,14 @@
 // Created by mihau on 11/10/15.
 //
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
+// #include <iostream>
 #include "game.h"
 
+#ifdef ARDUINO
+int rand() {
+    return random(10000000);
+}
+#endif
 
 Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1, InputDevice* inputDevice2):
         renderer(renderer),

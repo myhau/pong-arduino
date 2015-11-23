@@ -2,7 +2,11 @@
 // Created by mihau on 11/10/15.
 //
 
+#ifdef ARDUINO
+
+#else
 #include <iostream>
+#endif
 #include "ball.h"
 
 
@@ -29,7 +33,9 @@ bool Ball::didCollide(Board* b) {
     collided |= pos_y - radius < 0;
     collided |= pos_y + radius > b->getHeight();
     if(collided) {
+        #ifndef ARDUINO
         std::cout << "collided with board " << std::endl;
+        #endif
     }
     return collided;
 }
@@ -45,7 +51,9 @@ bool Ball::didCollide(Paddle* p) {
 }
 
 void Ball::handleCollision(Paddle* p) {
+    #ifndef ARDUINO
     std::cout << "collided with paddle " << ((p->getWhichPaddle() == Paddle::left) ? 0 : 1) << std::endl;
+    #endif
     velocity_x = -velocity_x;
     velocity_y += p->getVelocityY();
 }

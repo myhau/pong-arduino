@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+cc9b5814653266da4bd18eaa1928777b CMakeFiles/pong_arduino_mock-size
+87a0eab130ba0e3c07912509dc7744cb CMakeFiles/pong_arduino_mock-upload
+1481e93e1379f7937209f9d139fc3c09 pong_arduino_mock_pong_arduino.ino.cpp
