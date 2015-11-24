@@ -11,7 +11,7 @@
 Paddle::Paddle(Paddle::Which which, float paddle_width, float paddle_height, Board* b, InputDevice* device1):
         device(device1), board(b), which_paddle(which),
         w(paddle_width), h(paddle_height), velocity_y(0), pos_y(1) {
-    pos_x = (which_paddle == left) ? 0 : board->getWidth() - w;
+    pos_x = (which_paddle == left) ? 1 : board->getWidth() - w - 1;
 }
 
 
