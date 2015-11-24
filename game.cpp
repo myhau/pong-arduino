@@ -16,7 +16,7 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
         player1Score(0), player2Score(0)
 {
     gameStatus = new GameStatus;
-    board = new Board(gameConfig->boardWidth, gameConfig->boardHeight, 1);
+    board = new Board(gameConfig->boardWidth - 10, gameConfig->boardHeight - 10, 1);
     paddle1 = new Paddle(Paddle::left, gameConfig->paddleWidth, gameConfig->paddleHeight, board, inputDevice1);
     paddle2 = new Paddle(Paddle::right, gameConfig->paddleWidth, gameConfig->paddleHeight, board, inputDevice2);
     ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus);
@@ -37,8 +37,8 @@ void Game::restartAndUpdateScores(int player1, int player2) {
     paddle2->setPos_y(0);
     ball->setPos_x(board->getWidth()/2);
     ball->setPos_y(board->getHeight()/2);
-    ball->setVelocity_x(rand() % 4 - 1);
-    ball->setVelocity_y(rand() % 3 - 1);
+    ball->setVelocity_x(-1);
+    ball->setVelocity_y(0);
     gameStatus->status = GameStatus::Status::Running;
 }
 
@@ -53,7 +53,7 @@ void Game::oneFrame() {
 
     if(!frh->shouldUpdateFrame()) return;
 
-    renderer->clearScreen(Color::Black);
+//    renderer->clearScreen(Color::Black);
 
 
 
@@ -61,7 +61,7 @@ void Game::oneFrame() {
 
     paddle1->update();
     paddle2->update();
-
+//
     ball->update();
 
 
@@ -69,7 +69,10 @@ void Game::oneFrame() {
     paddle2->render(renderer);
     ball->render(renderer);
 
+
+//    delay(100);
     frh->updatedFrameNow();
+
 
 }
 

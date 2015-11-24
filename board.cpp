@@ -22,6 +22,6 @@ void Board::update() {
 }
 
 void Board::render(Renderer* r) {
-    r->drawRect(1, 1, w - 2, h - 2, Color::White);
+    r->drawRect(1, 1, w , h, Color::White);
 }
 

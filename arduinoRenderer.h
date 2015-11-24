@@ -9,11 +9,13 @@
 #include "renderer.h"
 #include "inputDevice.h"
 #include "TVout.h"
+#include "Arduino.h"
 
 class ArduinoRenderer: public Renderer {
 private:
     int w;
     int h;
+public:
     TVout TV;
 
 void after();

@@ -2,11 +2,12 @@
 #include "game.h"
 #include "arduinoRenderer.h"
 #include "randomInputDevice.h"
-
+#include "mockInputDevice.h"
 Game* g;
 ArduinoRenderer* ar;
 JoystickInputDevice* joy;
-randomInputDevice* rid;
+InputDevice* rid;
+TVout* TV;
 
 void setup() {
   GameConfig gc;
@@ -15,12 +16,19 @@ void setup() {
 
   rid = new randomInputDevice();
 
+
   ar = new ArduinoRenderer(120, 96);
   g = new Game(ar, &gc, joy, rid);
+
+  TV = &(ar->TV);
+
+  Serial.begin(9600);
 
   g->start();
 }
 
 void loop() {
+  TV->delay_frame(1);
+  TV->clear_screen();
   g->oneFrame();
 }

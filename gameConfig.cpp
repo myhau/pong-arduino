@@ -5,9 +5,9 @@
 #include "gameConfig.h"
 
 GameConfig::GameConfig():
-        ballRadius(10),
-        paddleHeight(50),
-        paddleWidth(5),
-        boardWidth(240),
-        boardHeight(192),
-        frameRate(100) {}
+        ballRadius(2),
+        paddleHeight(25),
+        paddleWidth(3),
+        boardWidth(120),
+        boardHeight(96),
+        frameRate(60) {}

@@ -8,10 +8,11 @@
 int randomInputDevice::getAngle() {
     int nowTime = randomInputDevice::nowTime();
 
+    int direction = rand() % 2 - 1;
 
-    if(nowTime - this->prevTime > 1) {
+    if(nowTime - this->prevTime > 2) {
         this->prevTime = nowTime;
-        this->angle = (-this->angle + rand() % 512) % 1024 - 512;
+        this->angle = direction * 511;
     }
 
     return this->angle;

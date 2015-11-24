@@ -55,17 +55,20 @@ void Ball::handleCollision(Paddle* p) {
     std::cout << "collided with paddle " << ((p->getWhichPaddle() == Paddle::left) ? 0 : 1) << std::endl;
     #endif
     velocity_x = -velocity_x;
-    velocity_y += p->getVelocityY();
+    velocity_y += p->getVelocityY()/4.0;
+    if(velocity_y > 5) {
+        velocity_y = 5;
+    };
 }
 
 void Ball::handleCollision(Board* b) {
     if(pos_y - radius < 0) {
         velocity_y = -velocity_y;
-        pos_y = radius + velocity_y;
+        pos_y = radius;
     }
     else if(pos_y + radius > b->getHeight()) {
         velocity_y = -velocity_y;
-        pos_y = b->getHeight() - radius + velocity_y;
+        pos_y = b->getHeight() - radius + velocity_y ;
     }
     else if(pos_x - radius < 0) {
         gameStatus->status = GameStatus::Status::player1Won;
@@ -77,7 +80,7 @@ void Ball::handleCollision(Board* b) {
 
 Ball::Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g):
         board(b), paddle1(paddle1), paddle2(paddle2),
-        radius(radius), velocity_x(-1), velocity_y(0),
+        radius(radius), velocity_x(-1), velocity_y(rand() % 2 - 0.5),
         pos_x(b->getWidth()/2), pos_y(b->getHeight()/2), gameStatus(g) {
 }
 
@@ -100,7 +103,6 @@ void Ball::update() {
 
 }
 void Ball::render(Renderer* r) {
-    r->drawCircle(0, 0, 5, Color::White, true);
     r->drawCircle(pos_x, pos_y, radius, Color::White, true);
 }
 
