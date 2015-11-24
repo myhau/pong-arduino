@@ -56,19 +56,22 @@ void Ball::handleCollision(Paddle* p) {
     #endif
     velocity_x = -velocity_x;
     velocity_y += p->getVelocityY()/4.0;
-    if(velocity_y > 5) {
-        velocity_y = 5;
+    if(velocity_y > 6) {
+        velocity_y = 6;
     };
+    if(velocity_y < -6) {
+        velocity_y = -6;
+    }
 }
 
 void Ball::handleCollision(Board* b) {
-    if(pos_y - radius < 0) {
+    if(pos_y - radius + velocity_y < 0) {
         velocity_y = -velocity_y;
-        pos_y = radius;
+        pos_y = radius + 1;
     }
-    else if(pos_y + radius > b->getHeight()) {
+    else if(pos_y + radius + velocity_y > b->getHeight()) {
         velocity_y = -velocity_y;
-        pos_y = b->getHeight() - radius + velocity_y ;
+        pos_y = b->getHeight() - radius + velocity_y;
     }
     else if(pos_x - radius < 0) {
         gameStatus->status = GameStatus::Status::player1Won;
@@ -77,6 +80,12 @@ void Ball::handleCollision(Board* b) {
         gameStatus->status = GameStatus::Status::player2Won;
     }
 }
+
+static int randomDirection() {
+    int poss[] = {-1, 1};
+    return poss[rand() % 2];
+}
+
 
 Ball::Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g):
         board(b), paddle1(paddle1), paddle2(paddle2),

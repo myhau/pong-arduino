@@ -59,7 +59,10 @@ void Paddle::update() {
         velocity_y = 0;
         pos_y = board->getHeight() - h - 1;
     }
-    else if(pos_y < 0) pos_y = 1;
+    else if(pos_y < 0) {
+        velocity_y = 0;
+        pos_y = 1;
+    }
 }
 void Paddle::render(Renderer* r) {
 
