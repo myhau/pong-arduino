@@ -8,10 +8,11 @@
 #include "paddle.h"
 
 
+
 Paddle::Paddle(Paddle::Which which, float paddle_width, float paddle_height, Board* b, InputDevice* device1):
         device(device1), board(b), which_paddle(which),
         w(paddle_width), h(paddle_height), velocity_y(0), pos_y(1) {
-    pos_x = (which_paddle == left) ? 1 : board->getWidth() - w - 1;
+    pos_x = (which_paddle == left) ? 2 : board->getWidth() - w ;
 }
 
 
@@ -59,9 +60,9 @@ void Paddle::update() {
         velocity_y = 0;
         pos_y = board->getHeight() - h - 1;
     }
-    else if(pos_y < 0) {
+    else if(pos_y < 2) {
         velocity_y = 0;
-        pos_y = 1;
+        pos_y = 2;
     }
 }
 void Paddle::render(Renderer* r) {

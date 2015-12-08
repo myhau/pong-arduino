@@ -8,6 +8,9 @@
 #include "board.h"
 #include "inputDevice.h"
 
+#include "random.h"
+
+
 class Paddle: GameObject {
 public:
     typedef char Which;

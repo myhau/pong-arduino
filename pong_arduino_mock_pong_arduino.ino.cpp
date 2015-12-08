@@ -5,7 +5,8 @@
 #include "arduinoRenderer.h"
 #include "randomInputDevice.h"
 #include "mockInputDevice.h"
-#line 9 "/home/mihau/workspace/pong-arduino-mock/pong_arduino_mock_pong_arduino.ino.cpp"
+#include "bluetoothInputDevice.h"
+#line 10 "/home/mihau/workspace/pong-arduino-mock/pong_arduino_mock_pong_arduino.ino.cpp"
 #include "Arduino.h"
 
 //=== START Forward: /home/mihau/workspace/pong-arduino-mock/pong_arduino.ino
@@ -14,7 +15,7 @@
  void loop() ;
  void loop() ;
 //=== END Forward: /home/mihau/workspace/pong-arduino-mock/pong_arduino.ino
-#line 4 "/home/mihau/workspace/pong-arduino-mock/pong_arduino.ino"
+#line 5 "/home/mihau/workspace/pong-arduino-mock/pong_arduino.ino"
 
 
 Game* g;
@@ -28,7 +29,7 @@ void setup() {
 
   joy = new JoystickInputDevice(0);
 
-  rid = new randomInputDevice();
+  rid = new bluetoothInputDevice();
 
 
   ar = new ArduinoRenderer(120, 96);
@@ -37,6 +38,8 @@ void setup() {
   TV = &(ar->TV);
 
   Serial.begin(9600);
+
+  Serial.println("SIEMANKO");
 
   g->start();
 }

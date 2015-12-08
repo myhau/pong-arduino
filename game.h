@@ -14,6 +14,8 @@
 #include "frameRate.h"
 #include "gameConfig.h"
 #include "gameStatus.h"
+#include "random.h"
+
 
 class Game {
 private:

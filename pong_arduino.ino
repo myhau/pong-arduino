@@ -3,6 +3,7 @@
 #include "arduinoRenderer.h"
 #include "randomInputDevice.h"
 #include "mockInputDevice.h"
+#include "bluetoothInputDevice.h"
 Game* g;
 ArduinoRenderer* ar;
 JoystickInputDevice* joy;
@@ -14,7 +15,7 @@ void setup() {
 
   joy = new JoystickInputDevice(0);
 
-  rid = new randomInputDevice();
+  rid = new bluetoothInputDevice();
 
 
   ar = new ArduinoRenderer(120, 96);
@@ -23,6 +24,8 @@ void setup() {
   TV = &(ar->TV);
 
   Serial.begin(9600);
+
+  Serial.println("SIEMANKO");
 
   g->start();
 }

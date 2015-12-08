@@ -12,6 +12,9 @@
 #include "gameStatus.h"
 #include "color.h"
 
+#include "random.h"
+
+
 class Ball: public GameObject {
 
 private:

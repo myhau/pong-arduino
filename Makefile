@@ -377,6 +377,33 @@ ball.cpp.s:
 	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/ball.cpp.s
 .PHONY : ball.cpp.s
 
+bluetoothInputDevice.obj: bluetoothInputDevice.cpp.obj
+
+.PHONY : bluetoothInputDevice.obj
+
+# target to build an object file
+bluetoothInputDevice.cpp.obj:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/bluetoothInputDevice.cpp.obj
+.PHONY : bluetoothInputDevice.cpp.obj
+
+bluetoothInputDevice.i: bluetoothInputDevice.cpp.i
+
+.PHONY : bluetoothInputDevice.i
+
+# target to preprocess a source file
+bluetoothInputDevice.cpp.i:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/bluetoothInputDevice.cpp.i
+.PHONY : bluetoothInputDevice.cpp.i
+
+bluetoothInputDevice.s: bluetoothInputDevice.cpp.s
+
+.PHONY : bluetoothInputDevice.s
+
+# target to generate assembly for a file
+bluetoothInputDevice.cpp.s:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/bluetoothInputDevice.cpp.s
+.PHONY : bluetoothInputDevice.cpp.s
+
 board.obj: board.cpp.obj
 
 .PHONY : board.obj
@@ -757,6 +784,33 @@ pong_arduino_mock_pong_arduino.ino.cpp.s:
 	$(MAKE) -f CMakeFiles/pong_arduino_mock.dir/build.make CMakeFiles/pong_arduino_mock.dir/pong_arduino_mock_pong_arduino.ino.cpp.s
 	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/pong_arduino_mock_pong_arduino.ino.cpp.s
 .PHONY : pong_arduino_mock_pong_arduino.ino.cpp.s
+
+random.obj: random.cpp.obj
+
+.PHONY : random.obj
+
+# target to build an object file
+random.cpp.obj:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/random.cpp.obj
+.PHONY : random.cpp.obj
+
+random.i: random.cpp.i
+
+.PHONY : random.i
+
+# target to preprocess a source file
+random.cpp.i:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/random.cpp.i
+.PHONY : random.cpp.i
+
+random.s: random.cpp.s
+
+.PHONY : random.s
+
+# target to generate assembly for a file
+random.cpp.s:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/random.cpp.s
+.PHONY : random.cpp.s
 
 randomInputDevice.obj: randomInputDevice.cpp.obj
 
@@ -1522,6 +1576,9 @@ help:
 	@echo "... ball.obj"
 	@echo "... ball.i"
 	@echo "... ball.s"
+	@echo "... bluetoothInputDevice.obj"
+	@echo "... bluetoothInputDevice.i"
+	@echo "... bluetoothInputDevice.s"
 	@echo "... board.obj"
 	@echo "... board.i"
 	@echo "... board.s"
@@ -1564,6 +1621,9 @@ help:
 	@echo "... pong_arduino_mock_pong_arduino.ino.obj"
 	@echo "... pong_arduino_mock_pong_arduino.ino.i"
 	@echo "... pong_arduino_mock_pong_arduino.ino.s"
+	@echo "... random.obj"
+	@echo "... random.i"
+	@echo "... random.s"
 	@echo "... randomInputDevice.obj"
 	@echo "... randomInputDevice.i"
 	@echo "... randomInputDevice.s"

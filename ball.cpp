@@ -8,6 +8,8 @@
 #include <iostream>
 #endif
 #include "ball.h"
+#include "Arduino.h"
+
 
 
 void Ball::setVelocity_x(float velocity_x) {
