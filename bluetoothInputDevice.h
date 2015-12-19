@@ -17,6 +17,7 @@ private:
     int angleFromBuf();
     Renderer* debug;
     char* print_buf;
+    char* print_buf2;
 public:
     bluetoothInputDevice(Renderer*);
     void print_all();

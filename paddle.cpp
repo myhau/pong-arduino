@@ -54,7 +54,7 @@ Paddle::Which Paddle::getWhichPaddle() const {
 }
 
 void Paddle::update() {
-    velocity_y = (device->getAngle()/400.0);
+    velocity_y = 0/*(device->getAngle()/400.0)*/;
     pos_y += velocity_y;
     if(pos_y + h > board->getHeight()) {
         velocity_y = 0;

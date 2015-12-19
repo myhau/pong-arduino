@@ -72,7 +72,7 @@ void Game::oneFrame() {
     ball->render(renderer);
 
 
-//    delay(100);
+    delay(1);
     frh->updatedFrameNow();
 
 

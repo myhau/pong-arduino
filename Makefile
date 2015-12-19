@@ -701,6 +701,33 @@ joystickInputDevice.cpp.s:
 	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/joystickInputDevice.cpp.s
 .PHONY : joystickInputDevice.cpp.s
 
+memfree.obj: memfree.c.obj
+
+.PHONY : memfree.obj
+
+# target to build an object file
+memfree.c.obj:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/memfree.c.obj
+.PHONY : memfree.c.obj
+
+memfree.i: memfree.c.i
+
+.PHONY : memfree.i
+
+# target to preprocess a source file
+memfree.c.i:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/memfree.c.i
+.PHONY : memfree.c.i
+
+memfree.s: memfree.c.s
+
+.PHONY : memfree.s
+
+# target to generate assembly for a file
+memfree.c.s:
+	$(MAKE) -f CMakeFiles/uno_..dir/build.make CMakeFiles/uno_..dir/memfree.c.s
+.PHONY : memfree.c.s
+
 mockInputDevice.obj: mockInputDevice.cpp.obj
 
 .PHONY : mockInputDevice.obj
@@ -1612,6 +1639,9 @@ help:
 	@echo "... joystickInputDevice.obj"
 	@echo "... joystickInputDevice.i"
 	@echo "... joystickInputDevice.s"
+	@echo "... memfree.obj"
+	@echo "... memfree.i"
+	@echo "... memfree.s"
 	@echo "... mockInputDevice.obj"
 	@echo "... mockInputDevice.i"
 	@echo "... mockInputDevice.s"
