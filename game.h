@@ -29,6 +29,12 @@ private:
     InputDevice* inputDevice2;
     int player1Score;
     int player2Score;
+    char scoreBuff[16];
+//    const char* player1won = "Player 1 won !";
+//    const char* player2won = "Player 2 won !";
+    bool newRound;
+    bool stopBall;
+    long lastStoppedBall;
 public:
     Game(Renderer *renderer, GameConfig *gameConfig, InputDevice *inputDevice1, InputDevice *inputDevice2);
 

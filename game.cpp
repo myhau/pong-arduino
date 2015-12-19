@@ -5,6 +5,7 @@
 // #include <iostream>
 #include "game.h"
 #include "bluetoothInputDevice.h"
+#include "string.h"
 
 #ifdef ARDUINO
 int rand() {
@@ -24,6 +25,9 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
     ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus);
     frh = new FrameRateHandler(gameConfig->frameRate);
     gameStatus->status = GameStatus::Status::Stopped;
+    newRound = false;
+    stopBall = false;
+    long lastStoppedBall = 0;
 }
 
 int randomNotZero(int from, int to) {
@@ -35,43 +39,68 @@ int randomNotZero(int from, int to) {
 void Game::restartAndUpdateScores(int player1, int player2) {
     player1Score += player1;
     player2Score += player2;
-    paddle1->setPos_y(0);
-    paddle2->setPos_y(0);
+//    paddle1->setPos_y(0);
+//    paddle2->setPos_y(0);
     ball->setPos_x(board->getWidth()/2);
     ball->setPos_y(board->getHeight()/2);
-    ball->setVelocity_x(0);
+    if(player1Score > player2Score) {
+        ball->setVelocity_x(1);
+    }
+    else {
+        ball->setVelocity_x(-1);
+    }
     ball->setVelocity_y(0);
     gameStatus->status = GameStatus::Status::Running;
+    newRound = true;
 }
 
 void Game::oneFrame() {
     if(gameStatus->status == GameStatus::Status::player1Won) {
         restartAndUpdateScores(1, 0);
+//        strcpy(scoreBuff, "Player 1 won !");
     }
 
     else if(gameStatus->status == GameStatus::Status::player2Won) {
         restartAndUpdateScores(0, 1);
+//        strcpy(scoreBuff, "Player 2 won !");
     }
 
     if(!frh->shouldUpdateFrame()) return;
+
+
 
 //    renderer->clearScreen(Color::Black);
 
     ((bluetoothInputDevice*)inputDevice2)->print_all();
 
+
+    itoa(player1Score, scoreBuff, 10);
+    renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
+    itoa(player2Score, scoreBuff, 10);
+    renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
+
     board->update(); board->render(renderer);
 
     paddle1->update();
     paddle2->update();
-//
-    ball->update();
 
+    if(stopBall && frh->nowInUs() - 3000 * 1000 > lastStoppedBall) {
+        stopBall = false;
+    }
+    else {
+        ball->update();
+    }
 
     paddle1->render(renderer);
     paddle2->render(renderer);
     ball->render(renderer);
 
-
+    if(newRound) {
+//        renderer->drawText(board->getWidth()/2 - 20, board->getHeight()/2, (char*)player1won);
+        newRound = false;
+        stopBall = true;
+        lastStoppedBall = frh->nowInUs();
+    }
     delay(1);
     frh->updatedFrameNow();
 

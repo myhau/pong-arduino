@@ -11,11 +11,12 @@ private:
     long lastUpdate;
     long shouldUpdateEvery;
 
-    long int nowInUs();
+
 public:
     FrameRateHandler(int frameRate);
     void updatedFrameNow();
     bool shouldUpdateFrame();
+    long int nowInUs();
 };
 
 #endif //PONG_ARDUINO_MOCK_FRAMERATE_H

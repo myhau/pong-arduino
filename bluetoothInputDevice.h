@@ -12,7 +12,7 @@ class bluetoothInputDevice : public InputDevice {
 private:
     int angle;
     int last_char;
-    char str_buf[30];
+    char str_buf[8];
     int str_size;
     int angleFromBuf();
     Renderer* debug;
