@@ -26,6 +26,7 @@ private:
     Renderer* renderer;
     FrameRateHandler* frh;
     GameStatus* gameStatus;
+    InputDevice* inputDevice2;
     int player1Score;
     int player2Score;
 public:

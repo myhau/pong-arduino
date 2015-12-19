@@ -25,6 +25,8 @@ public:
 
     virtual void drawCircle(int x, int y, int radius, Color c, bool filled) override;
 
+    virtual void drawText(int x, int y, char* s);
+
     virtual void clearScreen(Color c) override;
 
     virtual int screenWidth() override;

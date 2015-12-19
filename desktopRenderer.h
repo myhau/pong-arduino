@@ -32,6 +32,8 @@ public:
 
     void draw_window();
 
+    
+
     void drawRect(int x0, int y0, int w1, int h1, Color c, bool filled = false) override;
 
     // x, y is center

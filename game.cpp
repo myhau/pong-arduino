@@ -4,6 +4,7 @@
 
 // #include <iostream>
 #include "game.h"
+#include "bluetoothInputDevice.h"
 
 #ifdef ARDUINO
 int rand() {
@@ -15,6 +16,7 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
         renderer(renderer),
         player1Score(0), player2Score(0)
 {
+    this->inputDevice2 = inputDevice2;
     gameStatus = new GameStatus;
     board = new Board(gameConfig->boardWidth - 3, gameConfig->boardHeight - 3, 1);
     paddle1 = new Paddle(Paddle::left, gameConfig->paddleWidth, gameConfig->paddleHeight, board, inputDevice1);
@@ -55,7 +57,7 @@ void Game::oneFrame() {
 
 //    renderer->clearScreen(Color::Black);
 
-
+    ((bluetoothInputDevice*)inputDevice2)->print_all();
 
     board->update(); board->render(renderer);
 

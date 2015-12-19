@@ -29,17 +29,18 @@ void setup() {
 
   joy = new JoystickInputDevice(0);
 
-  rid = new bluetoothInputDevice();
+
 
 
   ar = new ArduinoRenderer(120, 96);
+  rid = new bluetoothInputDevice(ar);
   g = new Game(ar, &gc, joy, rid);
 
   TV = &(ar->TV);
 
   Serial.begin(9600);
 
-  Serial.println("SIEMANKO");
+
 
   g->start();
 }

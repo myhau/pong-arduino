@@ -6,13 +6,20 @@
 #define PONG_ARDUINO_MOCK_BLUETOOTHINPUTDEVICE_H
 #include "inputDevice.h"
 #include "Arduino.h"
+#include "renderer.h"
 
 class bluetoothInputDevice : public InputDevice {
 private:
     int angle;
     int last_char;
+    char str_buf[30];
+    int str_size;
+    int angleFromBuf();
+    Renderer* debug;
+    char* print_buf;
 public:
-    bluetoothInputDevice();
+    bluetoothInputDevice(Renderer*);
+    void print_all();
     int getAngle() override ;
 };
 

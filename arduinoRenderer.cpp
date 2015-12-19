@@ -3,39 +3,48 @@
 //
 
 #include "arduinoRenderer.h"
+#include "font8x8.h"
+
 void ArduinoRenderer::after() {
     TV.delay_frame(1);
 }
 
 ArduinoRenderer::ArduinoRenderer(int w, int h) {
+    // TV.select_font(font6x8);
     this->w = w;
     this->h = h;
     TV.begin(PAL, w, h);
+    TV.select_font(font8x8);
 }
 
 int ArduinoRenderer::screenWidth() {
     return this->w;
 }
+
 int ArduinoRenderer::screenHeight() {
     return this->h;
 }
 
 void ArduinoRenderer::drawRect(int x0, int y0, int w1, int h1, Color c, bool filled) {
-    if(filled)
+    if (filled)
         TV.draw_rect(x0, y0, w1, h1, WHITE, INVERT);
     else
         TV.draw_rect(x0, y0, w1, h1, WHITE);
 }
 
+void ArduinoRenderer::drawText(int x, int y, char* buff) {
+    TV.print(x, y, buff);
+}
+
 void ArduinoRenderer::drawCircle(int x, int y, int r, Color c, bool filled) {
-    if(x + r > screenWidth() -1 || y + r > screenHeight() - 1) return;
-    if(x - r<= 0 || y - r <= 0) return;
-    if(filled)
-        TV.draw_circle(x, y, r, WHITE,INVERT);
+    if (x + r > screenWidth() - 1 || y + r > screenHeight() - 1) return;
+    if (x - r <= 0 || y - r <= 0) return;
+    if (filled)
+        TV.draw_circle(x, y, r, WHITE, INVERT);
     else
         TV.draw_circle(x, y, r, WHITE);
 };
+
 void ArduinoRenderer::clearScreen(Color c) {
     TV.clear_screen();
 };
-
