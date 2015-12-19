@@ -43,38 +43,53 @@ void bluetoothInputDevice::print_all() {
 //  itoa(freeRam(), print_buf2, 10);
 //  debug->drawText(50, 20, print_buf2);
 //  debug->drawText(10, 10, print_buf);
-  debug->drawText(30, 30, str_buf);
+
+//  int c = Serial.read();
+//  Serial.write(c);
+//  if(c == -1) return;
+//  itoa(c, str_buf, 10);
+//  str_buf[1] = 0;
+//  debug->drawText(30, 30, str_buf);
+//  debug->drawText(10, 10, print_buf);
 }
 
 int bluetoothInputDevice::getAngle() {
 
 
-    while(Serial.available()) {
+//    while(Serial.available()) {
       int c = Serial.read();
-      Serial.write(c);
-      if(c == -1) break;
-      Serial.write(c);
-      if(c == '#') {
-        str_buf[str_size] = 0;
-        int a = angleFromBuf();
-        itoa(a, print_buf, 10);
+      if(c != -1) {
+//        itoa(c, print_buf, 10);
+//        print_buf[1] = 0;
+        print_buf[0] = c;
+        print_buf[1] = 0;
+        debug->drawText(10, 10, print_buf);
+        itoa(c, print_buf, 10);
+        print_buf[1] = 0;
+        debug->drawText(30, 30, print_buf);
+        Serial.write(c);
+      };
 
-        if(a != -1) {
-          if (a > 150) {
-            angle = 255;
-          }
-          else {
-            angle = -255;
-          }
-          break;
-        }
-      } else if(c != '*') {
-    //    Serial.write('O');
-        str_buf[str_size] = c;
-        str_size++;
-      }
-    }
+//      if(c == '#') {
+//        str_buf[str_size] = 0;
+//        int a = angleFromBuf();
+//        itoa(a, print_buf, 10);
+//        if(a != -1) {
+//          if (a == ) {
+//            angle = 255;
+//          }
+//          else {
+//            angle = -255;
+//          }
+////          break;
+//        }
+//      } else if(c != '*' && c != -1) {
+//    //    Serial.write('O');
+//        str_buf[str_size] = c;
+//        str_size++;
+//      }
+////    }
 
 
-    return angle;
+    return 0;
 };
