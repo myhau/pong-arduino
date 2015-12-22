@@ -84,24 +84,30 @@ void Game::oneFrame() {
     paddle1->update();
     paddle2->update();
 
-    itoa(lastStoppedBall, scoreBuff, 10);
-    renderer->drawText(30, 50, scoreBuff);
+    ball->update();
 
-    itoa(millis(), scoreBuff, 10);
-    renderer->drawText(30, 30, scoreBuff);
+//    if(stopBall && (millis() - 3000 < lastStoppedBall)) {
+//        ball->setPos_x(0);
+//        ball->setPos_y(0);
+////        renderer->drawText(50, 50, "DUPA1");
+//    }
+//    else {
+////        renderer->drawText(50, 50, "DUPA2");
+//        stopBall = false;
+//
+//    }
+
+//    itoa(lastStoppedBall, scoreBuff, 10);
+//    renderer->drawText(30, 50, scoreBuff);
+//
+//    itoa(millis(), scoreBuff, 10);
+//    renderer->drawText(30, 30, scoreBuff);
 
     paddle1->render(renderer);
     paddle2->render(renderer);
+    ball->render(renderer);
 
-    if(stopBall && (millis() - 3000 < lastStoppedBall)) {
-        renderer->drawText(50, 50, "DUPA1");
-    }
-    else {
-        renderer->drawText(50, 50, "DUPA2");
-        stopBall = false;
-        ball->update();
-        ball->render(renderer);
-    }
+
 
 
 
