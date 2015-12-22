@@ -25,9 +25,9 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
     ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus);
     frh = new FrameRateHandler(gameConfig->frameRate);
     gameStatus->status = GameStatus::Status::Stopped;
-    newRound = false;
-    stopBall = false;
-    long lastStoppedBall = 0;
+//    newRound = false;
+//    stopBall = false;
+//    long lastStoppedBall = 0;
 }
 
 int randomNotZero(int from, int to) {
@@ -51,7 +51,7 @@ void Game::restartAndUpdateScores(int player1, int player2) {
     }
     ball->setVelocity_y(0);
     gameStatus->status = GameStatus::Status::Running;
-    newRound = true;
+//    newRound = true;
 }
 
 void Game::oneFrame() {
@@ -74,10 +74,10 @@ void Game::oneFrame() {
     ((bluetoothInputDevice*)inputDevice2)->print_all();
 
 
-    itoa(player1Score, scoreBuff, 10);
-    renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
-    itoa(player2Score, scoreBuff, 10);
-    renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
+//    itoa(player1Score, scoreBuff, 10);
+//    renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
+//    itoa(player2Score, scoreBuff, 10);
+//    renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
 
     board->update(); board->render(renderer);
 
@@ -112,12 +112,12 @@ void Game::oneFrame() {
 
 
 
-    if(newRound) {
-//        renderer->drawText(board->getWidth()/2 - 20, board->getHeight()/2, (char*)player1won);
-        newRound = false;
-        stopBall = true;
-        lastStoppedBall = millis();
-    }
+//    if(newRound) {
+////        renderer->drawText(board->getWidth()/2 - 20, board->getHeight()/2, (char*)player1won);
+//        newRound = false;
+//        stopBall = true;
+//        lastStoppedBall = millis();
+//    }
     delay(1);
     frh->updatedFrameNow();
 
