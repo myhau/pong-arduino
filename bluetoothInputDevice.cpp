@@ -65,9 +65,13 @@ int bluetoothInputDevice::getAngle() {
     }
     if(c == -1) return angle;
     int val = c - 48;
+    if(val == 4 || val == 5) {
+        angle = 0;
+        return angle;
+    }
     angle = val * 100 - 500;
     itoa(angle, print_buf, 10);
-    debug->drawText(10, 10, print_buf);
+//    debug->drawText(10, 10, print_buf);
 //    if (c == '2') {
 //        angle = 255;
 //    }

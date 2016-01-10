@@ -57,12 +57,12 @@ void Game::restartAndUpdateScores(int player1, int player2) {
 void Game::oneFrame() {
     if(gameStatus->status == GameStatus::Status::player1Won) {
         restartAndUpdateScores(1, 0);
-//        strcpy(scoreBuff, "Player 1 won !");
+//        renderer->drawText(0, 0, (char*)player1won);
     }
 
     else if(gameStatus->status == GameStatus::Status::player2Won) {
         restartAndUpdateScores(0, 1);
-//        strcpy(scoreBuff, "Player 2 won !");
+//        renderer->drawText(0, board->getHeight()/2 - 10, (char*)player2won);
     }
 
     if(!frh->shouldUpdateFrame()) return;
@@ -74,10 +74,10 @@ void Game::oneFrame() {
     ((bluetoothInputDevice*)inputDevice2)->print_all();
 
 
-//    itoa(player1Score, scoreBuff, 10);
-//    renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
-//    itoa(player2Score, scoreBuff, 10);
-//    renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
+    itoa(player1Score, scoreBuff, 10);
+    renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
+    itoa(player2Score, scoreBuff, 10);
+    renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
 
     board->update(); board->render(renderer);
 
