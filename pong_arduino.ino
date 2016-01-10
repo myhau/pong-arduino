@@ -5,32 +5,36 @@
 #include "mockInputDevice.h"
 #include "bluetoothInputDevice.h"
 #include "memfree.h"
-Game* g;
-ArduinoRenderer* ar;
-JoystickInputDevice* joy;
-InputDevice* rid;
-TVout* TV;
+
+Game *g;
+ArduinoRenderer *ar;
+JoystickInputDevice *joy;
+InputDevice *rid;
+TVout *TV;
+
+bool first_time = true;
 
 void setup() {
-  GameConfig gc;
+    GameConfig gc;
 
-  joy = new JoystickInputDevice(0);
+    joy = new JoystickInputDevice(0);
+    ar = new ArduinoRenderer(gc.boardWidth + 10, gc.boardHeight + 8);
+    rid = new bluetoothInputDevice(ar);
+    g = new Game(ar, &gc, joy, rid);
 
-  ar = new ArduinoRenderer(60, 48);
-  rid = new bluetoothInputDevice(ar);
-  g = new Game(ar, &gc, joy, rid);
+    TV = &(ar->TV);
 
-  TV = &(ar->TV);
+    Serial.begin(9600);
 
-  Serial.begin(9600);
-
-  Serial.println(freeMemory());
-
-  g->start();
+    g->start();
 }
 
 void loop() {
-  TV->delay_frame(1);
-  TV->clear_screen();
-  g->oneFrame();
+    TV->delay_frame(1);
+    TV->clear_screen();
+    if (first_time) {
+        first_time = false;
+        delay(5000);
+    }
+    g->oneFrame();
 }

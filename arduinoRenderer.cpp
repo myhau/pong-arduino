@@ -10,7 +10,6 @@ void ArduinoRenderer::after() {
 }
 
 ArduinoRenderer::ArduinoRenderer(int w, int h) {
-    // TV.select_font(font6x8);
     this->w = w;
     this->h = h;
     TV.begin(PAL, w, h);

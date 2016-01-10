@@ -56,18 +56,12 @@ int bluetoothInputDevice::getAngle() {
     }
     if(c == -1) return angle;
     int val = c - 48;
+    val = 9 - val;
     if(val == 4 || val == 5) {
         angle = 0;
         return angle;
     }
     angle = val * 100 - 500;
-//    if (c == '2') {
-//        angle = 255;
-//    }
-//    else if (c == '1') {
-//        angle = -255;
-//    }
-
 
     return angle;
 };

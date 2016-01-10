@@ -76,7 +76,7 @@ ARDUINO_VARIANTS_PATH:FILEPATH=ARDUINO_VARIANTS_PATH-NOTFOUND
 ARDUINO_VERSION_PATH:FILEPATH=/usr/share/arduino/lib/version.txt
 
 //Path to a program.
-AVRSIZE_PROGRAM:FILEPATH=/usr/sbin/avr-size
+AVRSIZE_PROGRAM:FILEPATH=/usr/bin/avr-size
 
 //List of detected Arduino Board configurations
 AVR_BOARDS:STRING=menu;yun;uno;diecimila;nano;mega;megaADK;leonardo;micro;esplora;mini;ethernet;fio;bt;LilyPadUSB;lilypad;pro;atmegang;robotControl;robotMotor;gemma
@@ -101,7 +101,7 @@ AVR_PROGRAMMERS_PATH:FILEPATH=/usr/share/arduino/hardware/arduino/avr/programmer
 AVR_VARIANTS_PATH:FILEPATH=/usr/share/arduino/hardware/arduino/avr/variants
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/usr/sbin/avr-ar
+CMAKE_AR:FILEPATH=/usr/bin/avr-ar
 
 //Choose the type of build, options are: None(CMAKE_CXX_FLAGS or
 // CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.
@@ -147,10 +147,10 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/usr/sbin/avr-ld
+CMAKE_LINKER:FILEPATH=/usr/bin/avr-ld
 
 //Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/sbin/make
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
 
 CMAKE_MODULE_LINKER_FLAGS:STRING=-w -Os -Wl,--gc-sections
 
@@ -163,19 +163,19 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=-w -Os -Wl,--gc-sections
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=-w -Os -Wl,--gc-sections
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/usr/sbin/avr-nm
+CMAKE_NM:FILEPATH=/usr/bin/avr-nm
 
 //Path to a program.
-CMAKE_OBJCOPY:FILEPATH=/usr/sbin/avr-objcopy
+CMAKE_OBJCOPY:FILEPATH=/usr/bin/avr-objcopy
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/usr/sbin/avr-objdump
+CMAKE_OBJDUMP:FILEPATH=/usr/bin/avr-objdump
 
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=pong_arduino_mock
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/usr/sbin/avr-ranlib
+CMAKE_RANLIB:FILEPATH=/usr/bin/avr-ranlib
 
 CMAKE_SHARED_LINKER_FLAGS:STRING=-w -Os -Wl,--gc-sections
 
@@ -210,7 +210,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/usr/sbin/avr-strip
+CMAKE_STRIP:FILEPATH=/usr/bin/avr-strip
 
 //The CMake toolchain file
 CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/mihau/workspace/pong-arduino-mock/cmake/ArduinoToolchain.cmake
@@ -394,7 +394,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_STRIP
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //uname command
-CMAKE_UNAME:INTERNAL=/usr/sbin/uname
+CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //A list of registered cores

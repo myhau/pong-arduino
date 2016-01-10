@@ -22,6 +22,10 @@ public:
 
     int getHeight() const;
 
+    int getMiddleX() const;
+
+    int getMiddleY() const;
+
     void update();
 
     void render(Renderer* r);

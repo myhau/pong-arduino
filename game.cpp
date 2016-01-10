@@ -26,9 +26,11 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
     ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus);
     frh = new FrameRateHandler(gameConfig->frameRate);
     gameStatus->status = GameStatus::Status::Stopped;
-//    newRound = false;
-//    stopBall = false;
-//    long lastStoppedBall = 0;
+    strcpy(playerWon, "GAME BEGINS");
+    newRound = false;
+    stopBall = false;
+    nextBallXVelocity = 1;
+    lastStoppedBall = 0;
 }
 
 int randomNotZero(int from, int to) {
@@ -40,91 +42,84 @@ int randomNotZero(int from, int to) {
 void Game::restartAndUpdateScores(int player1, int player2) {
     player1Score += player1;
     player2Score += player2;
-//    paddle1->setPos_y(0);
-//    paddle2->setPos_y(0);
-    ball->setPos_x(board->getWidth()/2);
-    ball->setPos_y(board->getHeight()/2);
+    ball->setPos_x(board->getMiddleX());
+    ball->setPos_y(board->getMiddleY());
     if(player1Score > player2Score) {
         ball->setVelocity_x(1);
+        nextBallXVelocity = 1;
     }
     else {
         ball->setVelocity_x(-1);
+        nextBallXVelocity = -1;
     }
+
     ball->setVelocity_y(0);
     gameStatus->status = GameStatus::Status::Running;
-//    newRound = true;
+    newRound = true;
+    stopBall = true;
+    lastStoppedBall = millis();
 }
 
 void Game::oneFrame() {
     if(gameStatus->status == GameStatus::Status::player1Won) {
         restartAndUpdateScores(1, 0);
-//        renderer->drawText(0, 0, (char*)player1won);
+        strcpy(playerWon, player1won);
     }
 
     else if(gameStatus->status == GameStatus::Status::player2Won) {
         restartAndUpdateScores(0, 1);
-//        renderer->drawText(0, board->getHeight()/2 - 10, (char*)player2won);
+        strcpy(playerWon, player2won);
     }
 
     if(!frh->shouldUpdateFrame()) return;
 
-    char print_buf[5];
-    itoa(freeMemory(),print_buf, 10);
-    renderer->drawText(10, 10, print_buf);
-
-//    renderer->clearScreen(Color::Black);
+//    char print_buf[5];
+//    itoa(freeMemory(),print_buf, 10);
+//    renderer->drawText(10, 10, print_buf);
 
     ((bluetoothInputDevice*)inputDevice2)->print_all();
 
+    //    renderer->clearScreen(Color::Black);
 
     itoa(player1Score, scoreBuff, 10);
     renderer->drawText(board->getWidth()/2 + 10 - 5, board->getHeight() - 10, scoreBuff);
     itoa(player2Score, scoreBuff, 10);
     renderer->drawText(board->getWidth()/2 - 10 - 5, board->getHeight() - 10, scoreBuff);
 
-    board->update(); board->render(renderer);
+    board->update();
+    board->render(renderer);
 
     paddle1->update();
     paddle2->update();
-
-    ball->update();
-
-//    if(stopBall && (millis() - 3000 < lastStoppedBall)) {
-//        ball->setPos_x(0);
-//        ball->setPos_y(0);
-////        renderer->drawText(50, 50, "DUPA1");
-//    }
-//    else {
-////        renderer->drawText(50, 50, "DUPA2");
-//        stopBall = false;
-//
-//    }
-
-//    itoa(lastStoppedBall, scoreBuff, 10);
-//    renderer->drawText(30, 50, scoreBuff);
-//
-//    itoa(millis(), scoreBuff, 10);
-//    renderer->drawText(30, 30, scoreBuff);
 
     paddle1->render(renderer);
     paddle2->render(renderer);
     ball->render(renderer);
 
+    if(stopBall) {
+        unsigned long millis1 = millis();
+        ball->setVelocity_y(0);
+        ball->setVelocity_x(0);
+        if(millis1 < lastStoppedBall - 1500) lastStoppedBall = millis1;
+        if (millis1 < lastStoppedBall + 1500) {
+            renderer->drawText(board->getMiddleX() - 25, board->getMiddleY() + 15, playerWon);
+        }
+        else {
+            stopBall = false;
+            ball->setVelocity_x(nextBallXVelocity);
+        }
+    }
+    else {
+        ball->update();
+    }
 
-
-
-
-
-//    if(newRound) {
-////        renderer->drawText(board->getWidth()/2 - 20, board->getHeight()/2, (char*)player1won);
-//        newRound = false;
-//        stopBall = true;
-//        lastStoppedBall = millis();
-//    }
-    delay(1);
+    if(newRound) {
+        newRound = false;
+        stopBall = true;
+        lastStoppedBall = millis();
+    }
+    delay(5);
     frh->updatedFrameNow();
-
-
 }
 
 void Game::start() {

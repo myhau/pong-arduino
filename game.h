@@ -30,11 +30,13 @@ private:
     int player1Score;
     int player2Score;
     char scoreBuff[16];
-//    const char* player1won = "Player 1 won !";
-//    const char* player2won = "Player 2 won !";
-//    bool newRound;
-//    bool stopBall;
-//    long lastStoppedBall;
+    const char* player1won = "Player 1 won !";
+    const char* player2won = "Player 2 won !";
+    char playerWon[32];
+    int nextBallXVelocity;
+    bool newRound;
+    bool stopBall;
+    unsigned long lastStoppedBall;
 public:
     Game(Renderer *renderer, GameConfig *gameConfig, InputDevice *inputDevice1, InputDevice *inputDevice2);
 
