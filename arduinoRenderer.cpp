@@ -3,7 +3,7 @@
 //
 
 #include "arduinoRenderer.h"
-#include "font8x8.h"
+#include "font4x6.h"
 
 void ArduinoRenderer::after() {
     TV.delay_frame(1);
@@ -14,7 +14,7 @@ ArduinoRenderer::ArduinoRenderer(int w, int h) {
     this->w = w;
     this->h = h;
     TV.begin(PAL, w, h);
-    TV.select_font(font8x8);
+    TV.select_font(font4x6);
 }
 
 int ArduinoRenderer::screenWidth() {

@@ -6,6 +6,7 @@
 #include "game.h"
 #include "bluetoothInputDevice.h"
 #include "string.h"
+#include "memfree.h"
 
 #ifdef ARDUINO
 int rand() {
@@ -67,7 +68,9 @@ void Game::oneFrame() {
 
     if(!frh->shouldUpdateFrame()) return;
 
-
+    char print_buf[5];
+    itoa(freeMemory(),print_buf, 10);
+    renderer->drawText(10, 10, print_buf);
 
 //    renderer->clearScreen(Color::Black);
 

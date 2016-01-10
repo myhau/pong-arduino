@@ -6,8 +6,6 @@
 #include "memfree.h"
 
 bluetoothInputDevice::bluetoothInputDevice(Renderer *r) {
-    print_buf = new char[8]();
-//  print_buf2 = new char[10];
     str_size = 0;
     angle = 0;
     last_char = (int) '0';
@@ -30,13 +28,6 @@ int bluetoothInputDevice::angleFromBuf() {
     str_size = 0;
     return -1;
 }
-
-//int freeRam ()
-//{
-//  extern int __heap_start, *__brkval;
-//  int v;
-//  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
-//}
 
 void bluetoothInputDevice::print_all() {
 //  itoa(freeRam(), print_buf2, 10);
@@ -70,8 +61,6 @@ int bluetoothInputDevice::getAngle() {
         return angle;
     }
     angle = val * 100 - 500;
-    itoa(angle, print_buf, 10);
-//    debug->drawText(10, 10, print_buf);
 //    if (c == '2') {
 //        angle = 255;
 //    }
