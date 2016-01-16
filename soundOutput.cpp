@@ -22,7 +22,7 @@ Silence::Silence(unsigned long forMs) {
 BuzzSound::BuzzSound(int pin, int howLoud, unsigned long forMs) {
     this->pin = pin;
     this->howLoud = howLoud;
-    this->forMs;
+    this->forMs = forMs;
     pinMode(pin, OUTPUT);
 }
 
@@ -45,10 +45,7 @@ void SoundOutput::scheduleSound(Sound* sound) {
             queueFirst = (queueFirst + 1) % SoundOutput::QUEUE_MAX;
         }
         queueLast = (queueLast + 1) % SoundOutput::QUEUE_MAX;
-    } else if(queueFirst == queueLast) {
-        queueLast++;
-    }
-    else {
+    } else {
         queueLast = (queueLast + 1) % SoundOutput::QUEUE_MAX;
     }
 }

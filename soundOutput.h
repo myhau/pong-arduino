@@ -35,7 +35,7 @@ public:
 class SoundOutput {
 private:
     Sound* playingNow;
-    int startedBuzzingThis;
+    unsigned long startedBuzzingThis;
     const static int QUEUE_MAX = 32;
     Sound* buzzQueue[SoundOutput::QUEUE_MAX];
     int queueFirst;

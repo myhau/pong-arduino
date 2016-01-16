@@ -34,6 +34,12 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
     nextBallXVelocity = 1;
     lastStoppedBall = 0;
 
+    Sound* silence = new Silence(200);
+    Sound* b1 = new BuzzSound(10, 1, 5);
+    Sound* b2 = new BuzzSound(11, 1, 5);
+    Sound* b3 = new BuzzSound(10, 1, 10);
+    this->winningSounds[0] = silence; this->winningSounds[1] = b1; this->winningSounds[2] = b2; this->winningSounds[3] = b3;
+
     int nowPlayin = 0;
 }
 
@@ -62,6 +68,7 @@ void Game::restartAndUpdateScores(int player1, int player2) {
     newRound = true;
     stopBall = true;
     lastStoppedBall = millis();
+
 }
 
 void Game::oneFrame() {
@@ -69,12 +76,12 @@ void Game::oneFrame() {
     soundOutput->refresh();
 
     if(gameStatus->status == GameStatus::Status::player1Won) {
-        restartAndUpdateScores(1, 0);
+        restartAndUpdateScores(0, 1);
         strcpy(playerWon, player1won);
     }
 
     else if(gameStatus->status == GameStatus::Status::player2Won) {
-        restartAndUpdateScores(0, 1);
+        restartAndUpdateScores(1, 0);
         strcpy(playerWon, player2won);
     }
 
@@ -117,6 +124,9 @@ void Game::oneFrame() {
     }
 
     if(newRound) {
+        for(int i = 0; i < 4; i++) {
+            soundOutput->scheduleSound(winningSounds[i]);
+        }
         newRound = false;
         stopBall = true;
         lastStoppedBall = millis();

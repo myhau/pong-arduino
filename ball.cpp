@@ -83,10 +83,10 @@ void Ball::handleCollision(Board* b) {
         pos_y = b->getHeight() - radius + velocity_y;
     }
     else if(pos_x - radius < 0) {
-        gameStatus->status = GameStatus::Status::player1Won;
+        gameStatus->status = GameStatus::Status::player2Won;
     }
     else if(pos_x + radius > b->getWidth()) {
-        gameStatus->status = GameStatus::Status::player2Won;
+        gameStatus->status = GameStatus::Status::player1Won;
     }
 }
 
@@ -102,8 +102,8 @@ Ball::Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus*
         pos_x(b->getWidth()/2), pos_y(b->getHeight()/2), gameStatus(g),
         s1(s1)
 {
-    soundBoard = new BuzzSound(10, 1, 10);
-    soundPaddle = new BuzzSound(11, 1, 10);
+    soundBoard = new BuzzSound(11, 1, 10);
+    soundPaddle = new BuzzSound(10, 1, 5);
 }
 
 

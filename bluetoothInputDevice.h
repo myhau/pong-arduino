@@ -6,6 +6,7 @@
 #define PONG_ARDUINO_MOCK_BLUETOOTHINPUTDEVICE_H
 #include "inputDevice.h"
 #include "Arduino.h"
+#include "HardwareSerial.h"
 #include "renderer.h"
 
 class bluetoothInputDevice : public InputDevice {

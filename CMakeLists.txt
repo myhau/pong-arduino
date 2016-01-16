@@ -10,6 +10,14 @@ project(${PROJECT_NAME})
 
 include_directories(/usr/share/arduino/hardware/arduino/avr/cores/arduino)
 
+
+file(GLOB project_SRC
+        "*.h"
+        "*.cpp"
+        )
+
+add_executable(whatever ${project_SRC})
+
 add_definitions(-DARDUINO)
 
 #add_subdirectory(lib)

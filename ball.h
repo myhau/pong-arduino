@@ -55,8 +55,6 @@ public:
 private:
     void handleCollision(Paddle* p);
     void handleCollision(Board* b);
-
-
 };
 
 

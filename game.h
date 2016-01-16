@@ -39,6 +39,7 @@ private:
     bool stopBall;
     unsigned long lastStoppedBall;
     SoundOutput* soundOutput;
+    Sound* winningSounds[4];
 public:
     Game(Renderer *renderer, GameConfig *gameConfig, InputDevice *inputDevice1, InputDevice *inputDevice2);
 
