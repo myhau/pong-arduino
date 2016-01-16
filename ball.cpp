@@ -9,7 +9,7 @@
 #endif
 #include "ball.h"
 #include "Arduino.h"
-
+#include "soundOutput.h"
 
 
 
@@ -57,6 +57,9 @@ void Ball::handleCollision(Paddle* p) {
     #ifndef ARDUINO
     std::cout << "collided with paddle " << ((p->getWhichPaddle() == Paddle::left) ? 0 : 1) << std::endl;
     #endif
+
+    this->s1->scheduleSound(soundPaddle);
+
     velocity_x = -velocity_x;
     velocity_y += p->getVelocityY()/4.0;
     if(velocity_y > 6) {
@@ -68,6 +71,9 @@ void Ball::handleCollision(Paddle* p) {
 }
 
 void Ball::handleCollision(Board* b) {
+
+    this->s1->scheduleSound(soundBoard);
+
     if(pos_y - radius + velocity_y < 0) {
         velocity_y = -velocity_y;
         pos_y = radius + 1;
@@ -90,14 +96,19 @@ static int randomDirection() {
 }
 
 
-Ball::Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g):
+Ball::Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g, SoundOutput* s1):
         board(b), paddle1(paddle1), paddle2(paddle2),
         radius(radius), velocity_x(-1), velocity_y(rand() % 2 - 0.5),
-        pos_x(b->getWidth()/2), pos_y(b->getHeight()/2), gameStatus(g) {
+        pos_x(b->getWidth()/2), pos_y(b->getHeight()/2), gameStatus(g),
+        s1(s1)
+{
+    soundBoard = new BuzzSound(10, 1, 10);
+    soundPaddle = new BuzzSound(11, 1, 10);
 }
 
-Ball::Ball(float radius, float initial_pos_x, float initial_pos_y, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g):
-        Ball(radius, b, paddle1, paddle2, g) {
+
+Ball::Ball(float radius, float initial_pos_x, float initial_pos_y, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* g, SoundOutput* s1):
+        Ball(radius, b, paddle1, paddle2, g, s1) {
     pos_x = initial_pos_x; pos_y = initial_pos_y;
 }
 

@@ -15,6 +15,7 @@
 #include "gameConfig.h"
 #include "gameStatus.h"
 #include "random.h"
+#include "soundOutput.h"
 
 
 class Game {
@@ -37,6 +38,7 @@ private:
     bool newRound;
     bool stopBall;
     unsigned long lastStoppedBall;
+    SoundOutput* soundOutput;
 public:
     Game(Renderer *renderer, GameConfig *gameConfig, InputDevice *inputDevice1, InputDevice *inputDevice2);
 

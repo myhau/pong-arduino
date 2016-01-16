@@ -7,6 +7,7 @@
 #include "bluetoothInputDevice.h"
 #include "string.h"
 #include "memfree.h"
+#include "soundOutput.h"
 
 #ifdef ARDUINO
 int rand() {
@@ -18,12 +19,13 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
         renderer(renderer),
         player1Score(0), player2Score(0)
 {
+    soundOutput = new SoundOutput();
     this->inputDevice2 = inputDevice2;
     gameStatus = new GameStatus;
     board = new Board(gameConfig->boardWidth - 3, gameConfig->boardHeight - 3, 1);
     paddle1 = new Paddle(Paddle::left, gameConfig->paddleWidth, gameConfig->paddleHeight, board, inputDevice1);
     paddle2 = new Paddle(Paddle::right, gameConfig->paddleWidth, gameConfig->paddleHeight, board, inputDevice2);
-    ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus);
+    ball = new Ball(gameConfig->ballRadius, this->board, this->paddle1, this->paddle2, this->gameStatus, soundOutput);
     frh = new FrameRateHandler(gameConfig->frameRate);
     gameStatus->status = GameStatus::Status::Stopped;
     strcpy(playerWon, "GAME BEGINS");
@@ -31,6 +33,8 @@ Game::Game(Renderer* renderer, GameConfig* gameConfig, InputDevice* inputDevice1
     stopBall = false;
     nextBallXVelocity = 1;
     lastStoppedBall = 0;
+
+    int nowPlayin = 0;
 }
 
 int randomNotZero(int from, int to) {
@@ -61,6 +65,9 @@ void Game::restartAndUpdateScores(int player1, int player2) {
 }
 
 void Game::oneFrame() {
+
+    soundOutput->refresh();
+
     if(gameStatus->status == GameStatus::Status::player1Won) {
         restartAndUpdateScores(1, 0);
         strcpy(playerWon, player1won);
@@ -72,10 +79,6 @@ void Game::oneFrame() {
     }
 
     if(!frh->shouldUpdateFrame()) return;
-
-//    char print_buf[5];
-//    itoa(freeMemory(),print_buf, 10);
-//    renderer->drawText(10, 10, print_buf);
 
     ((bluetoothInputDevice*)inputDevice2)->print_all();
 

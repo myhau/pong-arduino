@@ -12,6 +12,8 @@
 #include "gameStatus.h"
 #include "color.h"
 
+#include "soundOutput.h"
+
 #include "random.h"
 
 
@@ -27,6 +29,9 @@ private:
     Paddle* paddle1;
     Paddle* paddle2;
     GameStatus* gameStatus;
+    SoundOutput* s1;
+    Sound* soundPaddle;
+    Sound* soundBoard;
 
 public:
     void setVelocity_x(float velocity_x);
@@ -40,9 +45,9 @@ public:
     bool didCollide(Paddle* p);
     bool didCollide(Board* b);
 
-    Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* gameStatus);
+    Ball(float radius, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* gameStatus, SoundOutput*);
 
-    Ball(float radius, float initial_pos_x, float initial_pos_y, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* gameStatus);
+    Ball(float radius, float initial_pos_x, float initial_pos_y, Board* b, Paddle* paddle1, Paddle* paddle2, GameStatus* gameStatus, SoundOutput*);
 
     void update();
     void render(Renderer* r);
